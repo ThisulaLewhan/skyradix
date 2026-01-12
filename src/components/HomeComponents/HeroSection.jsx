@@ -8,7 +8,7 @@ const HeroSection = () => {
                  bg-gradient-to-b from-[#f5f5f5] to-[#dfdaee] overflow-hidden "
     >
       {/* Main Logo */}
-      <div className="sm:max-w-20 md:max-w-lg lg:max-w-lg w-full mx-auto px-14 mt-0 lg:mt-0 xl:mt-0 ">
+      <div className="sm:max-w-20 md:max-w-lg lg:max-w-lg w-full mx-auto px-14 mt-0 lg:mt-0 xl:mt-20 ">
         <Image
           src="/images/hero-content.png"
           alt="Skyradix white logo"

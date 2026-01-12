@@ -4,17 +4,17 @@ import { poppins400 } from '@/app/fonts';
 
 // Navigation data object
 const navLinks = [
-  { name: 'Home', href: '/#home' },
-  { name: 'Services', href: '/#services' },
-  { name: 'About Us', href: '/#about' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '/home' },
+  { name: 'Services', href: '/home#services' },
+  { name: 'About Us', href: '/home#about' },
+  { name: 'Contact', href: '/home#contact' },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 bg-[#111111]/90 backdrop-blur-sm border-b border-white/10 z-50">
+    <nav className="sticky top-0 bg-[#000000]/75 backdrop-blur-s border-b-2 border-white/10 z-50">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

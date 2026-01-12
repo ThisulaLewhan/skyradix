@@ -17,7 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Skyradix | Web, Mobile & Software Solutions",
+  title: "Skyradix Solutions",
+  // ADDED: This fixes the canonical URL issue globally and correctly
+  metadataBase: new URL("https://skyradix.com"),
+  alternates: {
+    canonical: "./",
+  },
+  // -----------------------------------------------------------
   url: "https://skyradix.com",
   email: "contact@skyradix.com",
   contact: "contact@skyradix.com",
@@ -43,10 +49,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@skyradix", // Update with actual Twitter handle
+    site: "@skyradix", 
     title: "Skyradix | Web, Mobile & Software Innovation",
     description: "We create technology-driven solutions for businesses, integrating marketing into every project for maximum impact.",
-    image: "https://skyradix.com/images/main-logo.png", // Update with actual image
+    image: "https://skyradix.com/images/main-logo.png", 
   },
   robots: "NOODP"
 };
@@ -57,16 +63,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <meta name="robots" content="NOODP" />
-        <link
-          rel="canonical"
-          href="https://skyradix.com/services/software"
-          key="canonical"
-        />
-         <link
-          rel="canonical"
-          href="https://skyradix.com/services/website"
-          key="canonical"
-        />
+        {/* REMOVED: The two duplicate <link> tags that caused the crash. 
+            The 'metadata' object above now handles this correctly. */}
         <StructuredData />
       </head>
       <body>
