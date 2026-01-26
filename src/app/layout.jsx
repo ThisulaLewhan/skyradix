@@ -4,6 +4,7 @@ import Footer from "@/components/MiscComponents/Footer";
 import "./globals.css";
 import StructuredData from "@/components/MiscComponents/StructuredData";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from 'next/script'
 
 
 const geistSans = Geist({
@@ -36,7 +37,7 @@ export const metadata = {
   openGraph: {
     title: "Skyradix | Web, Mobile & Software Innovation",
     description: "At Skyradix, we merge innovation with strategy to build powerful web, mobile, and software solutions that drive business success.",
-    url: "https://skyradix.com", 
+    url: "https://skyradix.com",
     type: "website",
     images: [
       {
@@ -49,10 +50,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@skyradix", 
+    site: "@skyradix",
     title: "Skyradix | Web, Mobile & Software Innovation",
     description: "We create technology-driven solutions for businesses, integrating marketing into every project for maximum impact.",
-    image: "https://skyradix.com/images/main-logo.png", 
+    image: "https://skyradix.com/images/main-logo.png",
   },
   robots: "NOODP"
 };
@@ -69,6 +70,12 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <GoogleAnalytics gaId="G-9WN3Y71GTE" />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-7450672699713030"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <Navbar />
         {children}
         <Footer />
