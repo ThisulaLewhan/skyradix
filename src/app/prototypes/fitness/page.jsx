@@ -1,7 +1,7 @@
 import FitnessApp from "./FitnessApp";
 
 export const metadata = {
-    title: "Skyradix Fitness | Demo",
+    title: "Vanguard Fitness | Demo",
     description: "A prototype fitness portfolio site by Skyradix Solutions. Not a real business.",
     robots: "noindex, nofollow",
 };
