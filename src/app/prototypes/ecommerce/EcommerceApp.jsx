@@ -189,7 +189,7 @@ export default function EcommerceApp() {
             </div>
 
             {/* DEMO BANNER (Subtle Floating Pill) */}
-            <div className="fixed bottom-4 right-4 z-[100] group pointer-events-auto">
+            <div className="fixed bottom-4 right-4 z-[110] group pointer-events-auto">
                 <div className="bg-black/80 backdrop-blur-md border border-[#00E5FF]/30 text-[#00E5FF] px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-[0_4px_12px_rgba(0,0,0,0.5)] transition-all flex items-center gap-2 hover:border-[#00E5FF]">
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E5FF] opacity-75"></span>
@@ -585,14 +585,14 @@ export default function EcommerceApp() {
             <section className="py-12 bg-white border-y border-gray-300">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
                     <h3 className="text-xl font-bold text-center mb-8 text-gray-600 uppercase tracking-widest">Popular Brands</h3>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                    <div className="grid grid-cols-3 md:flex md:flex-wrap justify-center items-center place-items-center gap-6 md:gap-16">
                         {/* Real Brand Logos */}
-                        <img src="https://cdn.simpleicons.org/samsung" alt="Samsung" className="h-12 md:h-16 w-auto max-w-[160px] object-contain " />
-                        <img src="https://cdn.simpleicons.org/sony/000000" alt="Sony" className="h-12 md:h-16 w-auto max-w-[160px] object-contain " />
-                        <img src="https://cdn.simpleicons.org/asus" alt="ASUS" className="h-11 md:h-16 w-auto max-w-[160px] object-contain " />
-                        <img src="https://cdn.simpleicons.org/jbl" alt="JBL" className="h-10 md:h-10 w-auto max-w-[160px] object-contain " />
-                        <img src="https://cdn.simpleicons.org/apple/000000" alt="Apple" className="h-8 md:h-8 w-auto max-w-[160px] object-contain " />
-                        <img src="https://cdn.simpleicons.org/lenovo/E2231A" alt="Lenovo" className="h-10 md:h-14 w-auto max-w-[160px] object-contain " />
+                        <img src="https://cdn.simpleicons.org/samsung" alt="Samsung" className="h-16 md:h-24 w-auto max-w-[160px] object-contain " />
+                        <img src="https://cdn.simpleicons.org/sony/000000" alt="Sony" className="h-16 md:h-24 w-auto max-w-[160px] object-contain " />
+                        <img src="https://cdn.simpleicons.org/asus" alt="ASUS" className="h-16 md:h-24 w-auto max-w-[160px] object-contain " />
+                        <img src="https://cdn.simpleicons.org/jbl" alt="JBL" className="h-12 md:h-16 w-auto max-w-[160px] object-contain " />
+                        <img src="https://cdn.simpleicons.org/apple/000000" alt="Apple" className="h-10 md:h-12 w-auto max-w-[160px] object-contain " />
+                        <img src="https://cdn.simpleicons.org/lenovo/E2231A" alt="Lenovo" className="h-12 md:h-24 w-auto max-w-[160px] object-contain " />
                     </div>
                 </div>
             </section>
@@ -612,7 +612,7 @@ export default function EcommerceApp() {
 
                         {/* Right Side: Text & Form */}
                         <div className="w-full md:w-[55%] text-white py-8 md:py-10 md:pr-16 lg:pr-24 order-1 md:order-2 flex flex-col md:pl-12 md:ml-20 lg:ml-32">
-                            <h2 className="text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-2 font-light tracking-tight">
+                            <h2 className="text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-2 font-normal tracking-tight">
                                 Subscribe to Get Our <br />
                                 <span className="font-bold text-white">Latest Offers!</span>
                             </h2>
