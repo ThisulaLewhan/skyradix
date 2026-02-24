@@ -83,7 +83,7 @@ const ProductCard = ({ product, isFlash = false }) => {
     };
 
     return (
-        <div className="bg-white rounded-2xl border border-gray-100 p-4 transition-all shadow-lg duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 relative group flex flex-col h-full">
+        <div className="bg-white rounded-2xl border border-gray-100 p-3 sm:p-4 transition-all shadow-lg duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 relative group flex flex-col h-full">
             {/* Top Badges & Wishlist */}
             <div className="flex justify-between items-start mb-4 z-10 relative">
                 <div>
@@ -105,7 +105,7 @@ const ProductCard = ({ product, isFlash = false }) => {
             </div>
 
             {/* Product Image */}
-            <div className="w-full h-48 mb-4 relative flex justify-center items-center p-2">
+            <div className="w-full h-32 sm:h-48 mb-3 sm:mb-4 relative flex justify-center items-center p-2">
                 <img src={product.image?.src || product.image} alt={product.name} className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105" />
             </div>
 
@@ -126,15 +126,15 @@ const ProductCard = ({ product, isFlash = false }) => {
                 </div>
 
                 {/* Price */}
-                <div className="flex items-end gap-2 mb-4">
-                    <span className="text-lg font-black tracking-tight">Rs {product.price}</span>
+                <div className="flex flex-col lg:flex-row items-start lg:items-end gap-0.5 lg:gap-2 mb-3 lg:mb-4">
+                    <span className="text-base sm:text-lg font-black tracking-tight whitespace-nowrap">Rs {product.price}</span>
                     {isFlash && product.originalPrice && (
-                        <span className="text-xs text-gray-400 line-through mb-1 font-medium">Rs {product.originalPrice}</span>
+                        <span className="text-[10px] sm:text-xs text-gray-400 line-through lg:mb-1 font-medium whitespace-nowrap">Rs {product.originalPrice}</span>
                     )}
                 </div>
 
                 {/* Add to Cart Button */}
-                <button className="w-full bg-black text-white py-2.5 rounded-xl font-bold text-xs tracking-wide hover:bg-gray-800 transition-colors mt-auto">
+                <button className="w-full bg-black text-white py-2 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-xs tracking-wide hover:bg-gray-800 transition-colors mt-auto">
                     Add To Cart
                 </button>
             </div>
@@ -167,13 +167,26 @@ export default function EcommerceApp() {
     const formatTime = (time) => String(time).padStart(2, '0');
 
     return (
-        <div className={`min-h-screen bg-white text-[#1a1a1a] ${inter.className}`}>
+        <div className={`min-h-screen bg-white text-[#1a1a1a] overflow-x-hidden ${inter.className}`}>
             {/* Hide Global Navbar & Footer from the preview */}
             <style dangerouslySetInnerHTML={{
                 __html: `
         body > nav { display: none !important; }
         body > footer { display: none !important; }
       `}} />
+
+            {/* BACK BUTTON (Subtle Floating Pill) */}
+            <div className="fixed bottom-4 left-4 z-[100] group pointer-events-auto">
+                <a
+                    href="/prototypes"
+                    className="bg-black/80 backdrop-blur-md border border-white/20 text-[#B0B0B0] px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-[0_4px_12px_rgba(0,0,0,0.5)] transition-all flex items-center gap-2 hover:border-white hover:text-white"
+                >
+                    <svg className="w-3 h-3 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Prototypes
+                </a>
+            </div>
 
             {/* DEMO BANNER (Subtle Floating Pill) */}
             <div className="fixed bottom-4 right-4 z-[100] group pointer-events-auto">
@@ -187,19 +200,6 @@ export default function EcommerceApp() {
                         - Conceptual Interface
                     </span>
                 </div>
-            </div>
-
-            {/* BACK BUTTON (Subtle Floating Pill) */}
-            <div className="fixed bottom-4 left-4 z-[100] group pointer-events-auto">
-                <a
-                    href="/prototypes"
-                    className="bg-black/80 backdrop-blur-md border border-white/20 text-[#B0B0B0] px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-[0_4px_12px_rgba(0,0,0,0.5)] transition-all flex items-center gap-2 hover:border-white hover:text-white"
-                >
-                    <svg className="w-3 h-3 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    Back to Prototypes
-                </a>
             </div>
 
             {/* 1. Header Section (Fixed overlaying the Hero) */}
@@ -235,7 +235,7 @@ export default function EcommerceApp() {
                     </a>
 
                     {/* Search Bar (Hidden on Mobile) */}
-                    <div className="hidden md:flex flex-1 max-w-4xl border border-gray-400 rounded-xl focus-within:ring-2 focus-within:ring-black focus-within:border-transparent transition-shadow relative">
+                    <div className="hidden md:flex flex-1 max-w-4xl border border-gray-400 rounded-xl focus-within:ring-2 focus-within:ring-black focus-within:border-transparent transition-shadow relative" suppressHydrationWarning>
                         {/* Dropdown Toggle */}
                         <div
                             className="bg-gray-50 rounded-l-xl border-r border-gray-400 px-4 py-2.5 flex items-center justify-between gap-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors w-[160px] shrink-0"
@@ -316,7 +316,7 @@ export default function EcommerceApp() {
                 >
                     <div className="flex flex-col px-4 py-6 space-y-6">
                         {/* Mobile Search Input */}
-                        <div className="flex items-center w-full border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black relative bg-white">
+                        <div className="flex items-center w-full border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black relative bg-white" suppressHydrationWarning>
                             {/* Mobile Dropdown Toggle */}
                             <div
                                 className="bg-gray-50 rounded-l-lg border-r border-gray-300 px-3 py-3 flex items-center justify-between gap-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors w-[140px] shrink-0"
@@ -409,7 +409,7 @@ export default function EcommerceApp() {
                 </div>
 
                 {/* Background Full Width Slider Image - Absolute overlay beneath text on mobile, stretches to bounds on desktop */}
-                <div className="w-full absolute inset-0 top-[460px] md:top-0 h-[calc(100%-450px)] sm:h-[500px] md:h-auto overflow-hidden z-0 md:relative md:order-none">
+                <div className="w-full absolute inset-0 top-[500px] md:top-0 h-[calc(100%-450px)] sm:h-[500px] md:h-auto overflow-hidden z-0 md:relative md:order-none">
                     {/* Desktop Hero Image */}
                     <Image
                         src={heroSlides[currentSlide]}
@@ -428,7 +428,7 @@ export default function EcommerceApp() {
                 </div>
 
                 {/* Carousel Controls - Absolutely positioned bottom center on all responsive breakpoints */}
-                <div className="absolute bottom-10 md:bottom-6 left-0 translate-x-0 md:left-1/2 md:-translate-x-1/2 lg:bottom-36 flex flex-row items-center justify-center gap-4 lg:gap-6 z-20 w-full md:w-auto">
+                <div className="absolute bottom-6 md:bottom-6 left-0 translate-x-0 md:left-1/2 md:-translate-x-1/2 lg:bottom-36 flex flex-row items-center justify-center gap-4 lg:gap-6 z-20 w-full md:w-auto">
                     <button
                         onClick={() => setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
                         className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full border-2 border-black/40 text-black/40 hover:bg-black hover:text-white transition-all "
@@ -504,7 +504,7 @@ export default function EcommerceApp() {
                             <Image src={bestSelling1} alt="Best Selling 1" className="w-[331px] max-w-full h-auto object-contain" />
                         </div>
                         <div className="flex justify-center cursor-pointer">
-                            <Image src={bestSelling2} alt="Best Selling 2" className="w-[510px] max-w-full h-auto object-contain" />
+                            <Image src={bestSelling2} alt="Best Selling 2" className="w-[331px] md:w-[510px] max-w-full h-auto object-contain" />
                         </div>
                         <div className="flex justify-center cursor-pointer">
                             <Image src={bestSelling3} alt="Best Selling 3" className="w-[335px] max-w-full h-auto object-contain" />
@@ -618,13 +618,13 @@ export default function EcommerceApp() {
                             </h2>
                             <p className="text-white/80 text-sm mb-8">Be the first one to get <span className="hidden md:inline"><br />notifications about our new products</span></p>
 
-                            <div className="flex bg-white rounded-xl p-1.5 w-full max-w-sm -mb-12 md:mb-0">
+                            <div className="flex bg-white rounded-xl p-1.5 w-full max-w-sm -mb-12 md:mb-0" suppressHydrationWarning>
                                 <input
                                     type="email"
                                     placeholder="Enter your email..."
-                                    className="flex-1 bg-transparent px-4 py-2.5 text-black placeholder:text-gray-400 focus:outline-none text-sm font-medium"
+                                    className="flex-1 min-w-0 bg-transparent px-4 py-2.5 text-black placeholder:text-gray-400 focus:outline-none text-sm font-medium"
                                 />
-                                <button className="bg-black text-white px-8 py-2.5 rounded-lg font-bold text-sm tracking-wide hover:bg-gray-800 transition-colors">
+                                <button className="bg-black text-white px-4 sm:px-8 py-2 sm:py-2.5 shrink-0 rounded-lg font-bold text-xs sm:text-sm tracking-wide hover:bg-gray-800 transition-colors">
                                     Subscribe
                                 </button>
                             </div>
