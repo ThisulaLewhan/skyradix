@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 
 import logoImg from "./images/TechNest-black-logo.svg";
 import logoImgWhite from "./images/TechNest-white-logo.svg";
@@ -51,7 +52,7 @@ const CATEGORIES = [
 
 const FEATURED_PRODUCTS = [
     { id: 1, name: "Apple iPhone 14 Pro", price: "288,900", originalPrice: null, rating: 5, reviews: 120, image: iphoneImage, isNew: false, liked: true },
-    { id: 2, name: "Apple AirPods Max 2", price: "188,000", originalPrice: null, rating: 5, reviews: 85, image: airpodsMax, isNew: false, liked: true },
+    { id: 2, name: "Apple AirPods Max", price: "188,000", originalPrice: null, rating: 5, reviews: 85, image: airpodsMax, isNew: false, liked: true },
     { id: 3, name: "Apple AirPods Pro", price: "65,000", originalPrice: null, rating: 4, reviews: 320, image: airpodsPro, isNew: false, liked: false },
     { id: 4, name: "JBL Wave Beam", price: "28,500", originalPrice: null, rating: 4, reviews: 45, image: jblTunebeam, isNew: false, liked: true },
     { id: 5, name: "Apple Watch Ultra 2", price: "257,000", originalPrice: null, rating: 5, reviews: 210, image: appleWatch, isNew: false, liked: false },
@@ -390,10 +391,10 @@ export default function EcommerceApp() {
                         Limited Time Offer!
                     </h2>
                     <h1 className="text-5xl sm:text-5xl lg:text-7xl font-extrabold text-[#1a1a1a] leading-[1] mb-6 tracking-tight">
-                        AirPods Max 2
+                        AirPods Max
                     </h1>
                     <p className="text-gray-700 text-sm sm:text-base md:text-lg max-w-xs sm:max-w-sm lg:max-w-md mb-8 leading-relaxed font-medium md:font-semibold">
-                        AirPods Max 2 - A perfect brilliance of high fidelity audio and the effortless magic of the AirPods
+                        AirPods Max - A perfect brilliance of high fidelity audio and the effortless magic of the AirPods
                     </p>
                     <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto px-4 sm:px-0">
                         <button
@@ -402,9 +403,9 @@ export default function EcommerceApp() {
                         >
                             Explore More
                         </button>
-                        <button className="w-[300px] sm:w-auto px-10 py-3.5 bg-black text-white font-bold rounded-full hover:bg-gray-800 transition-all text-sm tracking-wide shadow-lg shadow-black/20">
+                        <Link href="/prototypes/ecommerce/product" className="w-[300px] sm:w-auto px-10 py-3.5 bg-black text-white font-bold rounded-full hover:bg-gray-800 transition-all text-sm tracking-wide shadow-lg shadow-black/20">
                             Buy Now
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
