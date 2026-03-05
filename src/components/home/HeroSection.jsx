@@ -49,7 +49,6 @@ export const HeroSection = () => {
                     src="/DNA-Animation.webm"
                     autoPlay
                     muted
-                    loop
                     playsInline
                     preload="auto"
                     disablePictureInPicture
@@ -67,7 +66,6 @@ export const HeroSection = () => {
                     src="/DNA-Animation.webm"
                     autoPlay
                     muted
-                    loop
                     playsInline
                     preload="auto"
                     disablePictureInPicture
