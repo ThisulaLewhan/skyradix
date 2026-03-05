@@ -35,7 +35,7 @@ export default function Footer() {
 
                     {/* Contact Info */}
                     <div className="col-span-2 lg:col-span-3 lg:col-start-6">
-                        <h4 className="text-white font-semibold mb-6">Contact Us</h4>
+                        <h3 className="text-white font-semibold mb-6">Contact Us</h3>
                         <div className="flex flex-col gap-4">
                             <a href="mailto:skyradixsolutions@gmail.com" className="flex items-center gap-3 text-sm text-muted-grey hover:text-accent-cyan transition-colors">
                                 <Mail size={16} />
@@ -54,7 +54,7 @@ export default function Footer() {
 
                     {/* Navigation */}
                     <div className="lg:col-span-2">
-                        <h4 className="text-white font-semibold mb-6">Navigation</h4>
+                        <h3 className="text-white font-semibold mb-6">Navigation</h3>
                         <ul className="space-y-4">
                             <li><Link href="/" className="text-muted-grey hover:text-white transition-colors text-sm">Home</Link></li>
                             <li><Link href="/services" className="text-muted-grey hover:text-white transition-colors text-sm">Services</Link></li>
@@ -65,7 +65,7 @@ export default function Footer() {
 
                     {/* Connect */}
                     <div className="lg:col-span-1 text-left">
-                        <h4 className="text-white font-semibold mb-6">Connect</h4>
+                        <h3 className="text-white font-semibold mb-6">Connect</h3>
                         <ul className="space-y-4">
                             <li><Link href="/about" className="text-muted-grey hover:text-white transition-colors text-sm">About Us</Link></li>
                             <li><Link href="/contact" className="text-muted-grey hover:text-white transition-colors text-sm">Contact</Link></li>
@@ -74,15 +74,15 @@ export default function Footer() {
 
                     {/* Socials */}
                     <div className="lg:col-span-2 text-left">
-                        <h4 className="text-white font-semibold mb-6">Follow Us</h4>
+                        <h3 className="text-white font-semibold mb-6">Follow Us</h3>
                         <div className="flex gap-4">
-                            <a href="https://www.instagram.com/skyradix_" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/5 hover:bg-zinc-800 text-muted-grey hover:text-white transition-all">
+                            <a href="https://www.instagram.com/skyradix_" target="_blank" rel="noopener noreferrer" aria-label="Skyradix Instagram Profile" className="p-2.5 rounded-full bg-white/5 hover:bg-zinc-800 text-muted-grey hover:text-white transition-all">
                                 <FaInstagram size={16} />
                             </a>
-                            <a href="https://www.facebook.com/share/187FdwH5w9/" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/5 hover:bg-zinc-800 text-muted-grey hover:text-white transition-all">
+                            <a href="https://www.facebook.com/share/187FdwH5w9/" target="_blank" rel="noopener noreferrer" aria-label="Skyradix Facebook Page" className="p-2.5 rounded-full bg-white/5 hover:bg-zinc-800 text-muted-grey hover:text-white transition-all">
                                 <FaFacebook size={16} />
                             </a>
-                            <a href="https://www.linkedin.com/company/skyradix/" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/5 hover:bg-zinc-800 text-muted-grey hover:text-white transition-all">
+                            <a href="https://www.linkedin.com/company/skyradix/" target="_blank" rel="noopener noreferrer" aria-label="Skyradix LinkedIn Profile" className="p-2.5 rounded-full bg-white/5 hover:bg-zinc-800 text-muted-grey hover:text-white transition-all">
                                 <FaLinkedinIn size={16} />
                             </a>
                         </div>
@@ -117,6 +117,7 @@ export default function Footer() {
                             }}
                             className="w-1.5 h-1.5 rounded-full bg-accent-cyan cursor-crosshair shadow-[0_0_8px_rgba(0,229,255,0.8)]"
                             title="Nothing to see here..."
+                            aria-label="Hidden Easter Egg"
                         />
                     </Link>
                 </div>

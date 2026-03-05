@@ -64,18 +64,18 @@ export default function Navbar() {
                                         return el ? `${el.offsetWidth}px` : '100px';
                                     })(),
                                     transform: `translateX(${(() => {
-                                            const path = hoveredPath || pathname;
-                                            const activeIndex = navLinks.findIndex(l => l.path === path);
-                                            if (activeIndex === -1) return 0;
-                                            let offset = 0;
-                                            if (typeof document !== 'undefined') {
-                                                for (let i = 0; i < activeIndex; i++) {
-                                                    const el = document.getElementById(`nav-link-${i}`);
-                                                    if (el) offset += el.offsetWidth;
-                                                }
+                                        const path = hoveredPath || pathname;
+                                        const activeIndex = navLinks.findIndex(l => l.path === path);
+                                        if (activeIndex === -1) return 0;
+                                        let offset = 0;
+                                        if (typeof document !== 'undefined') {
+                                            for (let i = 0; i < activeIndex; i++) {
+                                                const el = document.getElementById(`nav-link-${i}`);
+                                                if (el) offset += el.offsetWidth;
                                             }
-                                            return offset;
-                                        })()
+                                        }
+                                        return offset;
+                                    })()
                                         }px)`
                                 }}
                             />
@@ -104,6 +104,7 @@ export default function Navbar() {
                     <button
                         className="lg:hidden text-white p-2"
                         onClick={() => setMobileMenuOpen(true)}
+                        aria-label="Toggle mobile menu"
                     >
                         <Menu size={24} />
                     </button>

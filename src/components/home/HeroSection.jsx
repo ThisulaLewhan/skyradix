@@ -10,23 +10,8 @@ import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export const HeroSection = () => {
-    const [videoSrc, setVideoSrc] = useState(null);
-
-    useEffect(() => {
-        // Fetch the video and create a blob URL to obscure the actual file path
-        fetch('/DNA-Animation.webm')
-            .then(res => res.blob())
-            .then(blob => {
-                const url = URL.createObjectURL(blob);
-                setVideoSrc(url);
-            })
-            .catch(err => console.error("Error loading secure video:", err));
-
-        // Cleanup blob on unmount
-        return () => {
-            if (videoSrc) URL.revokeObjectURL(videoSrc);
-        };
-    }, []);
+    // Removed complex Blob loading logic to drastically improve LCP.
+    // The video will now load concurrently with the HTML document.
 
     const preventContextMenu = (e) => {
         e.preventDefault();
@@ -60,34 +45,38 @@ export const HeroSection = () => {
 
             {/* Left DNA Video */}
             <div className="absolute top-0 left-0 opacity-80 z-0 pointer-events-none mix-blend-lighten">
-                {videoSrc && (
-                    <video
-                        src={videoSrc}
-                        autoPlay
-                        muted
-                        playsInline
-                        disablePictureInPicture
-                        controlsList="nodownload noplaybackrate"
-                        className="w-64 md:w-[480px] h-auto"
-                        {...protectedImageProps}
-                    />
-                )}
+                <video
+                    src="/DNA-Animation.webm"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    disablePictureInPicture
+                    controlsList="nodownload noplaybackrate"
+                    className="w-64 md:w-[480px] h-auto"
+                    {...protectedImageProps}
+                >
+                    <track kind="captions" srcLang="en" label="English" default />
+                </video>
             </div>
 
             {/* Right DNA Video (Flipped) */}
             <div className="absolute top-0 right-0 opacity-80 scale-x-[-1] z-0 pointer-events-none mix-blend-lighten">
-                {videoSrc && (
-                    <video
-                        src={videoSrc}
-                        autoPlay
-                        muted
-                        playsInline
-                        disablePictureInPicture
-                        controlsList="nodownload noplaybackrate"
-                        className="w-64 md:w-[480px] h-auto"
-                        {...protectedImageProps}
-                    />
-                )}
+                <video
+                    src="/DNA-Animation.webm"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    disablePictureInPicture
+                    controlsList="nodownload noplaybackrate"
+                    className="w-64 md:w-[480px] h-auto"
+                    {...protectedImageProps}
+                >
+                    <track kind="captions" srcLang="en" label="English" default />
+                </video>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 lgx:px-8 relative z-10 w-full mt-10 md:mt-28">
