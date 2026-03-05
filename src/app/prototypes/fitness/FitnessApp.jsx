@@ -11,8 +11,15 @@ const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] }
 export default function FitnessApp() {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [backHref, setBackHref] = useState("/prototypes");
+    const [backLabel, setBackLabel] = useState("Back to Prototypes");
 
     useEffect(() => {
+        if (typeof window !== "undefined" && window.location.search.includes("from=home")) {
+            setBackHref("/#prototypes");
+            setBackLabel("Back to Home");
+        }
+
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
         };
@@ -46,11 +53,15 @@ export default function FitnessApp() {
         <div
             className={`min-h-screen bg-[#121212] text-white selection:bg-[#AAFF00] selection:text-black overflow-x-hidden scroll-smooth ${inter.className}`}
         >
-            {/* Hide Global Navbar & Footer from the preview */}
+            {/* Hide Global Navbar, Footer, and Neon Scrollbar from the preview */}
             <style dangerouslySetInnerHTML={{
                 __html: `
         body > nav { display: none !important; }
         body > footer { display: none !important; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #121212; }
+        ::-webkit-scrollbar-thumb { background: #333333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555555; }
         .grid-bg { 
           background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
           linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -79,13 +90,13 @@ export default function FitnessApp() {
             {/* BACK BUTTON (Subtle Floating Pill) */}
             <div className="fixed bottom-4 left-4 z-[100] group pointer-events-auto">
                 <a
-                    href="/prototypes"
+                    href={backHref}
                     className="bg-black/80 backdrop-blur-md border border-white/20 text-[#B0B0B0] px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-[0_4px_12px_rgba(0,0,0,0.5)] transition-all flex items-center gap-2 hover:border-white hover:text-white"
                 >
                     <svg className="w-3 h-3 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    Back to Prototypes
+                    {backLabel}
                 </a>
             </div>
 

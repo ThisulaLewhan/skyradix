@@ -3,60 +3,59 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #000000;
+  --foreground: #EDF1F5;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* [START] hero section scroll down inidcate button */
-
-@keyframes bounce-custom {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+/* Custom Scrollbar for Dark Theme */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.animate-bounce-custom {
-  animation: bounce-custom 1.5s ease-in-out infinite;
+::-webkit-scrollbar-track {
+  background: #000000;
 }
 
-/* [ END ] hero section scroll down inidcate button */
-
-.background-thing {
-  background: 
-    url("/images/bg-imag.jpeg") lightgray;
-  background-size: cover, cover; 
-  background-position: center, center; 
-  background-repeat: no-repeat, no-repeat; 
-  width: 100vw;
-  min-height: 100vh;
+::-webkit-scrollbar-thumb {
+  background: #00ff9953;
+  /* Slightly lighter than pitch black so it's always visible */
+  border-radius: 4px;
 }
 
-.hover-effectx {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
-  transform: translateZ(0);
-  
+::-webkit-scrollbar-thumb:hover {
+  background: #00FF98;
 }
 
-.hover-effectx:hover {
-  transform: scale(1.01);
-  -webkit-font-smoothing: subpixel-antialiased;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* Glassmorphism */
+.glass {
+  background: rgba(17, 17, 17, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Grid Background Texture */
+.bg-grid-texture {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Fix Browser Autofill Styles For Dark Theme Inputs */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #000000 inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

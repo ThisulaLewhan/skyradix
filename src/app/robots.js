@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/prototypes/'],
+      disallow: ['/prototypes/', '/easter-egg'],
     },
     sitemap: 'https://skyradix.com/sitemap.xml',
   }

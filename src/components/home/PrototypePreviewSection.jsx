@@ -1,11 +1,14 @@
 "use client";
 
-import { PageTransition, SectionTransition } from "@/components/ui/PageTransition";
-import { H1, Body } from "@/components/ui/Typography";
+import { SectionTransition } from "@/components/ui/PageTransition";
+import { H2, Body } from "@/components/ui/Typography";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import { ArrowRight, Box } from "lucide-react";
+import DotGrid from "@/components/ui/DotGrid";
 
-export default function PrototypesPage() {
+export const PrototypePreviewSection = () => {
     const prototypes = [
         {
             id: "fitness",
@@ -13,7 +16,7 @@ export default function PrototypesPage() {
             icon: <img src="/images/fluent-weights.png" alt="Fitness" className="w-10 h-10 object-contain drop-shadow-sm" />,
             desc: "A modern gym and fitness centre website with class schedules, membership plans, and trainer profiles.",
             tags: ["Health", "Gym", "Membership"],
-            link: "/prototypes/fitness",
+            link: "/prototypes/fitness?from=home",
             bgClass: "",
             borderClass: "!border-orange-500/50 hover:!border-orange-400",
             shadowClass: "shadow-none hover:shadow-[0_0_30px_rgba(249,115,22,0.6)]"
@@ -24,7 +27,7 @@ export default function PrototypesPage() {
             icon: <img src="/images/fluent-cart.png" alt="E-Commerce" className="w-10 h-10 object-contain drop-shadow-sm" />,
             desc: "A sleek online storefront with product listings, a shopping cart, and a smooth checkout experience.",
             tags: ["Shopping", "Retail", "Online Store"],
-            link: "/prototypes/ecommerce",
+            link: "/prototypes/ecommerce?from=home",
             bgClass: "",
             borderClass: "!border-indigo-500/50 hover:!border-indigo-400",
             shadowClass: "shadow-none hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]"
@@ -32,16 +35,29 @@ export default function PrototypesPage() {
     ];
 
     return (
-        <PageTransition>
-            <div className="pt-24 pb-24 max-w-7xl mx-auto px-6 lgx:px-8">
-                <SectionTransition className="mb-20 flex flex-col items-center text-center">
-                    <div className="border border-white/10 rounded-full px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-muted-grey uppercase bg-white/5 backdrop-blur-sm">
-                        Our Work
+        <section id="prototypes" className="py-24 relative bg-primary-black overflow-hidden relative">
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <DotGrid gap={24} size={1.5} mouseRadius={200} distortionStrength={4} returnSpeed={0.06} className="opacity-100" />
+            </div>
+            {/* Overlay gradient to blend edges */}
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-primary-black to-transparent pointer-events-none z-0" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary-black to-transparent pointer-events-none z-0" />
+
+            <div className="max-w-7xl mx-auto px-6 lgx:px-8 relative z-10">
+                <SectionTransition className="flex flex-col items-center justify-center text-center mb-16 gap-6">
+                    <div className="max-w-2xl">
+                        <H2 className="mb-4">Explore Interactive Prototypes</H2>
+                        <Body variant="muted" className="mb-8">
+                            Live demos of concepts, UI systems, and experimental builds.<br />
+                            See what we can build for your business.
+                        </Body>
                     </div>
-                    <H1 className="mb-6 font-bold tracking-tight text-5xl md:text-6xl text-white drop-shadow-sm">Live Prototypes</H1>
-                    <Body variant="large" className="text-muted-grey max-w-3xl text-lg">
-                        Real websites built by Skyradix, click any card to explore a live demo and see what we can build for your business.
-                    </Body>
+                    <Link href="/prototypes">
+                        <Button variant="secondary" className="group">
+                            View All Prototypes
+                            <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                    </Link>
                 </SectionTransition>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -87,6 +103,6 @@ export default function PrototypesPage() {
                     </SectionTransition>
                 </div>
             </div>
-        </PageTransition>
+        </section>
     );
-}
+};
