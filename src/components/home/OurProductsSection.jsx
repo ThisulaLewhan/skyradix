@@ -2,7 +2,7 @@
 
 import { SectionTransition } from "@/components/ui/PageTransition";
 import { H2, H3, Body } from "@/components/ui/Typography";
-import { QrCode, ArrowRight, ExternalLink, Sparkles } from "lucide-react";
+import { QrCode, ArrowRight, ExternalLink, Sparkles, Dumbbell } from "lucide-react";
 import Link from "next/link";
 import DotGrid from "@/components/ui/DotGrid";
 
@@ -20,9 +20,16 @@ export const OurProductsSection = () => {
             hasGlow: true
         },
         {
-            status: "coming_soon",
-            borderClass: "border-white/10 border-dashed",
-            hasGlow: false
+            title: "Gym OS",
+            desc: "A complete gym management system. Handle memberships, track attendance, real-time analytics and door access controll, all from one powerful dashboard.",
+            link: "/gym-os",
+            icon: <Dumbbell className="w-8 h-8 text-purple-400" />,
+            color: "from-purple-500/20 to-pink-500/20",
+            borderClass: "border-purple-500/30 group-hover:border-purple-400/50",
+            status: "live",
+            ctaText: "Explore Gym OS",
+            hasGlow: true,
+            isExternal: false
         },
         {
             status: "coming_soon",
@@ -60,7 +67,11 @@ export const OurProductsSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {products.map((product, index) => {
                         const CardWrapper = product.status === "live" ? Link : 'div';
-                        const wrapperProps = product.status === "live" ? { href: product.link, target: "_blank", rel: "noopener noreferrer" } : {};
+                        const wrapperProps = product.status === "live"
+                            ? (product.isExternal === false
+                                ? { href: product.link }
+                                : { href: product.link, target: "_blank", rel: "noopener noreferrer" })
+                            : {};
 
                         return (
                             <SectionTransition key={index} delay={index * 0.15}>
@@ -84,7 +95,10 @@ export const OurProductsSection = () => {
                                                             {product.icon}
                                                         </div>
                                                         <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 group-hover:text-white group-hover:bg-white/10 transition-all duration-300">
-                                                            <ExternalLink className="w-4 h-4" />
+                                                             {product.isExternal === false
+                                                                ? <ArrowRight className="w-4 h-4" />
+                                                                : <ExternalLink className="w-4 h-4" />
+                                                             }
                                                         </div>
                                                     </div>
 
