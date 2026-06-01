@@ -23,7 +23,7 @@ export const OurProductsSection = () => {
             title: "Gym OS",
             desc: "A complete gym management system. Handle memberships, track attendance, real-time analytics and door access control, all from one powerful dashboard.",
             link: "/gym-os",
-            icon: <Dumbbell className="w-8 h-8 text-indigo-400" />,
+            icon: <Dumbbell className="w-8 h-8 text-neon-cyan" />,
             color: "from-indigo-500/20 to-indigo-900/20",
             borderClass: "border-indigo-500/30 group-hover:border-indigo-400/50",
             status: "live",
