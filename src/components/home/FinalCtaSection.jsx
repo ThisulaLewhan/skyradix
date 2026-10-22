@@ -2,7 +2,6 @@
 
 import { SectionTransition } from "@/components/ui/PageTransition";
 import { H2, Body } from "@/components/ui/Typography";
-import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 
@@ -35,23 +34,19 @@ export const FinalCtaSection = () => {
                 <SectionTransition>
                     <H2 className="text-4xl md:text-6xl mb-6">Have a vision?</H2>
                     <Body variant="large" className="text-white/80 mb-12">
-                        Let's do it properly. We build scalable systems that perform from day one.
+                        Let&apos;s do it properly. We build scalable systems that perform from day one.
                     </Body>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         {/* Direct Call button — opens phone dialer */}
-                        <a href="tel:0702708220">
-                            <button className="group inline-flex items-center justify-center gap-2.5 min-w-[200px] px-8 py-4 rounded-xl bg-white text-black font-semibold text-base hover:bg-white/90 shadow-[0_0_40px_rgba(255,255,255,0.25)] hover:shadow-[0_0_60px_rgba(255,255,255,0.45)] transition-all duration-300 active:scale-95">
-                                <Phone size={17} className="group-hover:scale-110 transition-transform" />
-                                Direct Call
-                            </button>
+                        <a href="tel:+94702708220" className="group inline-flex items-center justify-center gap-2.5 min-w-[200px] px-8 py-4 rounded-xl bg-white text-black font-semibold text-base hover:bg-white/90 shadow-[0_0_40px_rgba(255,255,255,0.25)] hover:shadow-[0_0_60px_rgba(255,255,255,0.45)] transition-all duration-300 active:scale-95">
+                            <Phone size={17} className="group-hover:scale-110 transition-transform" />
+                            Direct Call
                         </a>
                         {/* Contact Us button */}
-                        <Link href="/contact">
-                            <button className="group inline-flex items-center justify-center gap-2.5 min-w-[200px] px-8 py-4 rounded-xl border border-white/30 hover:border-white/50 text-white/80 hover:text-white font-semibold text-base backdrop-blur-lg bg-white/5 hover:bg-white/10 transition-all duration-300 active:scale-95">
-                                Start a Project
-                                <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
-                            </button>
+                        <Link href="/contact" className="group inline-flex items-center justify-center gap-2.5 min-w-[200px] px-8 py-4 rounded-xl border border-white/30 hover:border-white/50 text-white/80 hover:text-white font-semibold text-base backdrop-blur-lg bg-white/5 hover:bg-white/10 transition-all duration-300 active:scale-95">
+                            Start a Project
+                            <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
                 </SectionTransition>

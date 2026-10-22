@@ -19,9 +19,6 @@ export const metadata = {
   alternates: {
     canonical: "./",
   },
-  url: "https://skyradix.com",
-  email: "skyradixsolutions@gmail.com",
-  contact: "skyradixsolutions@gmail.com",
   description: "Skyradix delivers cutting-edge web, mobile, and software solutions, seamlessly integrating behavioral strategies to ensure digital success.",
   keywords: [
     "Custom software development agency",
@@ -56,9 +53,7 @@ export const metadata = {
     "Thisula Lewhan"
   ],
   robots: "index, follow",
-  author: "Skyradix Team",
-  software: "https://skyradix.com/services/software",
-  website: "https://skyradix.com/services/website",
+  authors: [{ name: "Skyradix Team", url: "https://skyradix.com" }],
   openGraph: {
     title: "Skyradix | Web, Mobile & Software Innovation",
     description: "At Skyradix, we merge innovation with strategy to build powerful web, mobile, and software solutions that drive business success.",
@@ -78,7 +73,7 @@ export const metadata = {
     site: "@skyradix",
     title: "Skyradix | Web, Mobile & Software Innovation",
     description: "We create technology-driven solutions for businesses, integrating strategy into every project for maximum impact.",
-    image: "https://skyradix.com/images/main-logo.png",
+    images: ["https://skyradix.com/images/main-logo.png"],
   }
 };
 

@@ -4,7 +4,6 @@ import { PageTransition, SectionTransition } from "@/components/ui/PageTransitio
 import { H1, H2, H3, Body } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
 import { AnimatedGradientCard } from "@/components/ui/AnimatedGradientCard";
-import Link from "next/link";
 import { Target, Eye, Users } from "lucide-react";
 
 export default function AboutPage() {
@@ -78,11 +77,9 @@ export default function AboutPage() {
                     <div className="relative z-10">
                         <H2 className="mb-6">Built For Scale</H2>
                         <Body variant="large" className="text-white/80 mb-10 max-w-2xl mx-auto">
-                            We partner with businesses that view technology as a real advantage. If you share this vision, let's talk.
+                            We partner with businesses that view technology as a real advantage. If you share this vision, let&apos;s talk.
                         </Body>
-                        <Link href="/contact">
-                            <Button size="lg">Collaborate With Us</Button>
-                        </Link>
+                        <Button href="/contact" size="lg">Collaborate With Us</Button>
                     </div>
                 </SectionTransition>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
     LayoutDashboard, Users, CreditCard, Dumbbell, BarChart3,
     MessageSquare, Settings, ChevronLeft, Search,
@@ -205,16 +205,16 @@ function Sidebar({ active, setActive }) {
 
 function DashboardPage({ onToast }) {
     const [feed, setFeed] = useState(INITIAL_FEED);
-    const [queueIdx, setQueueIdx] = useState(0);
 
     useEffect(() => {
+        let queueIdx = 0;
         const id = setInterval(() => {
             const next = LIVE_QUEUE[queueIdx % LIVE_QUEUE.length];
+            queueIdx += 1;
             setFeed(prev => [{ ...next, time: "Just now" }, ...prev].slice(0, 5));
-            setQueueIdx(i => i + 1);
         }, 3500);
         return () => clearInterval(id);
-    }, [queueIdx]);
+    }, []);
 
     const actions = [
         { Icon: RefreshCw, label: "Renew Membership", sub: "Quick search & extend package",  msg: "Renew Membership opened",     iconBg: "bg-indigo-600/25", iconBorder: "border-indigo-500/25", iconColor: "text-indigo-400", hoverBg: "hover:border-indigo-500/40" },
@@ -476,8 +476,9 @@ function PTTrackerPage({ onToast }) {
     const TIME_FILTERS = ["This Week", "This Month", "Last Month", "Custom Range"];
 
     const filtered = PT_SESSIONS.filter(s =>
-        s.name.toLowerCase().includes(search.toLowerCase()) ||
-        s.adm.toLowerCase().includes(search.toLowerCase())
+        (coachFilter === "All Coaches" || s.coach === coachFilter) &&
+        (s.name.toLowerCase().includes(search.toLowerCase()) ||
+            s.adm.toLowerCase().includes(search.toLowerCase()))
     );
     const total = filtered.reduce((acc, s) => acc + parseInt(s.price.replace(/[^0-9]/g, "")), 0);
 
@@ -709,7 +710,11 @@ function SMSPage({ onToast }) {
     });
 
     const toggleSelect = id => setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
-    const toggleAll = () => setSelected(selected.length === filtered.length ? [] : filtered.map(m => m.id));
+    const allSelected = filtered.length > 0 && filtered.every(m => selected.includes(m.id));
+    const toggleAll = () => {
+        const ids = filtered.map(m => m.id);
+        setSelected(prev => allSelected ? prev.filter(id => !ids.includes(id)) : [...new Set([...prev, ...ids])]);
+    };
     const handleSendBulk = () => {
         if (selected.length === 0) { onToast("Select at least one member"); return; }
         onToast(`SMS sent to ${selected.length} member${selected.length > 1 ? "s" : ""}`);
@@ -785,7 +790,7 @@ function SMSPage({ onToast }) {
                     <thead>
                         <tr className="border-b border-white/5 bg-white/[0.01]">
                             <th className="w-10 py-2.5 pl-4">
-                                <input type="checkbox" checked={selected.length === filtered.length && filtered.length > 0}
+                                <input type="checkbox" checked={allSelected}
                                     onChange={toggleAll} className="w-3.5 h-3.5 accent-indigo-500 cursor-pointer" />
                             </th>
                             {["Member Name", "Mobile Number", "Admission No", "Package", "Start Date", "Package Expiry", "Status", "Action"].map(h => (
@@ -876,9 +881,9 @@ function SettingsPage({ onToast }) {
                             </p>
                             <p className="text-white/35 text-xs mb-4">Choose the visual theme for the application interface.</p>
                             <div className="flex bg-[#0d0e14] border border-transparent rounded-xl p-1">
-                                {[[" Light", Sun], ["Dark", Moon], ["System", Monitor]].map(([label, Icon]) => (
-                                    <button key={label} onClick={() => setTheme(label.trim())}
-                                        className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs transition-all ${theme === label.trim() ? "bg-[#1a1b24] text-white font-medium border border-white/10" : "text-white/35 hover:text-white/60"}`}>
+                                {[["Light", Sun], ["Dark", Moon], ["System", Monitor]].map(([label, Icon]) => (
+                                    <button key={label} onClick={() => setTheme(label)}
+                                        className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs transition-all ${theme === label ? "bg-[#1a1b24] text-white font-medium border border-white/10" : "text-white/35 hover:text-white/60"}`}>
                                         <Icon className="w-3.5 h-3.5" /> {label}
                                     </button>
                                 ))}
@@ -891,7 +896,7 @@ function SettingsPage({ onToast }) {
                                 <Settings className="w-4 h-4 text-indigo-400" /> Global Settings
                             </p>
                             <p className="text-white text-xs font-medium mb-0.5">System Grace Period (Days)</p>
-                            <p className="text-white/30 text-xs mb-2.5">Number of days a member's portal remains active after their official end date before turning red.</p>
+                            <p className="text-white/30 text-xs mb-2.5">Number of days a member&apos;s portal remains active after their official end date before turning red.</p>
                             <div className="flex items-center gap-2">
                                 <input type="number" value={gracePeriod} onChange={e => setGracePeriod(Number(e.target.value))}
                                     className="w-24 bg-[#0d0e14] border border-transparent rounded-lg px-3 py-1.5 text-white text-xs outline-none focus:border-indigo-500/40 transition-colors" />
@@ -934,7 +939,7 @@ function SettingsPage({ onToast }) {
                     </div>
                 )}
 
-                {subNav === "Package Management" && (
+                {subNav === "Packages" && (
                     <div className="bg-[#13141a] border border-white/5 rounded-xl p-12 flex flex-col items-center justify-center text-center">
                         <Package className="w-12 h-12 text-white/10 mb-3" />
                         <p className="text-white/20 text-sm">Package Management</p>
@@ -959,6 +964,9 @@ function SettingsPage({ onToast }) {
 export default function GymOSDemo() {
     const [activePage, setActivePage] = useState("dashboard");
     const [toast, setToast] = useState(null);
+    // Each toast gets its own id so a new message restarts the timer and progress bar
+    const showToast = useCallback(message => setToast({ message, id: Date.now() }), []);
+    const closeToast = useCallback(() => setToast(null), []);
 
     return (
         <>
@@ -977,16 +985,16 @@ export default function GymOSDemo() {
                 }
             `}</style>
             <div className="gymos-demo relative flex h-[660px] bg-[#0d0e14] rounded-b-xl overflow-hidden select-none">
-                {toast && <Toast message={toast} onClose={() => setToast(null)} />}
+                {toast && <Toast key={toast.id} message={toast.message} onClose={closeToast} />}
                 <Sidebar active={activePage} setActive={setActivePage} />
                 <main className="flex-1 overflow-hidden flex">
-                    {activePage === "dashboard" && <DashboardPage  onToast={setToast} />}
-                    {activePage === "members"   && <MembersPage    onToast={setToast} />}
-                    {activePage === "payments"  && <PaymentsPage   onToast={setToast} />}
-                    {activePage === "pttracker" && <PTTrackerPage  onToast={setToast} />}
-                    {activePage === "analytics" && <AnalyticsPage  onToast={setToast} />}
-                    {activePage === "sms"       && <SMSPage        onToast={setToast} />}
-                    {activePage === "settings"  && <SettingsPage   onToast={setToast} />}
+                    {activePage === "dashboard" && <DashboardPage  onToast={showToast} />}
+                    {activePage === "members"   && <MembersPage    onToast={showToast} />}
+                    {activePage === "payments"  && <PaymentsPage   onToast={showToast} />}
+                    {activePage === "pttracker" && <PTTrackerPage  onToast={showToast} />}
+                    {activePage === "analytics" && <AnalyticsPage  onToast={showToast} />}
+                    {activePage === "sms"       && <SMSPage        onToast={showToast} />}
+                    {activePage === "settings"  && <SettingsPage   onToast={showToast} />}
                 </main>
             </div>
         </>

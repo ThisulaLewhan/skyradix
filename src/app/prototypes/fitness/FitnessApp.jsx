@@ -216,18 +216,18 @@ export default function FitnessApp() {
             {/* 3. Marquee Banner */}
             <div className="bg-[#AAFF00] text-black overflow-hidden py-4 border-y border-white flex relative">
                 <div className="flex whitespace-nowrap animate-marquee font-bold tracking-widest uppercase">
-                    <span className="mx-4">// NEW MEMBER OFFER</span>
-                    <span className="mx-4">// 30% OFF ANNUAL MEMBERSHIPS</span>
-                    <span className="mx-4">// FREE ASSESSMENT INCLUDED</span>
-                    <span className="mx-4">// JOIN THE VANGUARD MOVEMENT</span>
-                    <span className="mx-4">// NEW MEMBER OFFER</span>
-                    <span className="mx-4">// 30% OFF ANNUAL MEMBERSHIPS</span>
-                    <span className="mx-4">// FREE ASSESSMENT INCLUDED</span>
-                    <span className="mx-4">// JOIN THE VANGUARD MOVEMENT</span>
-                    <span className="mx-4">// NEW MEMBER OFFER</span>
-                    <span className="mx-4">// 30% OFF ANNUAL MEMBERSHIPS</span>
-                    <span className="mx-4">// FREE ASSESSMENT INCLUDED</span>
-                    <span className="mx-4">// JOIN THE VANGUARD MOVEMENT</span>
+                    <span className="mx-4">{"// NEW MEMBER OFFER"}</span>
+                    <span className="mx-4">{"// 30% OFF ANNUAL MEMBERSHIPS"}</span>
+                    <span className="mx-4">{"// FREE ASSESSMENT INCLUDED"}</span>
+                    <span className="mx-4">{"// JOIN THE VANGUARD MOVEMENT"}</span>
+                    <span className="mx-4">{"// NEW MEMBER OFFER"}</span>
+                    <span className="mx-4">{"// 30% OFF ANNUAL MEMBERSHIPS"}</span>
+                    <span className="mx-4">{"// FREE ASSESSMENT INCLUDED"}</span>
+                    <span className="mx-4">{"// JOIN THE VANGUARD MOVEMENT"}</span>
+                    <span className="mx-4">{"// NEW MEMBER OFFER"}</span>
+                    <span className="mx-4">{"// 30% OFF ANNUAL MEMBERSHIPS"}</span>
+                    <span className="mx-4">{"// FREE ASSESSMENT INCLUDED"}</span>
+                    <span className="mx-4">{"// JOIN THE VANGUARD MOVEMENT"}</span>
                 </div>
             </div>
 
@@ -312,7 +312,7 @@ export default function FitnessApp() {
                             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                         </svg>
                         <p className="text-2xl md:text-4xl text-white leading-tight font-medium mb-8">
-                            "Vanguard isn't a gym, it's an intervention. They pushed me past mental barriers I didn't know I had. The environment is intoxicating, the coaches are world-class. I'm in the best shape of my life."
+                            &quot;Vanguard isn&apos;t a gym, it&apos;s an intervention. They pushed me past mental barriers I didn&apos;t know I had. The environment is intoxicating, the coaches are world-class. I&apos;m in the best shape of my life.&quot;
                         </p>
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-[2px] bg-[#AAFF00]"></div>

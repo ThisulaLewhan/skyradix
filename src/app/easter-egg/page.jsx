@@ -4,8 +4,7 @@ import { PageTransition, SectionTransition } from "@/components/ui/PageTransitio
 import { H1, H2, Body } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { LockOpen, Zap, ShieldCheck } from "lucide-react";
-import Link from "next/link";
+import { LockOpen, Zap } from "lucide-react";
 
 export default function EasterEggPage() {
     const slotsTotal = 3;
@@ -26,7 +25,7 @@ export default function EasterEggPage() {
                         </div>
                         <H1 className="text-5xl md:text-6xl text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] mb-4">You Found It.</H1>
                         <Body variant="large" className="text-white/80">
-                            Not everyone looks closely. We appreciate those who do. As a reward for your curiosity, you've unlocked priority access.
+                            Not everyone looks closely. We appreciate those who do. As a reward for your curiosity, you&apos;ve unlocked priority access.
                         </Body>
                     </SectionTransition>
 
@@ -66,13 +65,11 @@ export default function EasterEggPage() {
                                     </div>
                                 </div>
 
-                                <Link href="/contact?ref=priority-protocol">
-                                    <Button size="lg" className="w-full text-lg shadow-[0_0_20px_rgba(0,229,255,0.3)] bg-accent-cyan text-primary-black hover:bg-white hover:text-primary-black">
-                                        Claim Priority Access
-                                    </Button>
-                                </Link>
+                                <Button href="/contact?ref=priority-protocol" size="lg" className="w-full text-lg shadow-[0_0_20px_rgba(0,229,255,0.3)] bg-accent-cyan text-primary-black hover:bg-white hover:text-primary-black">
+                                    Claim Priority Access
+                                </Button>
                                 <p className="text-center text-sm text-white/60 mt-4">
-                                    Mention "Priority Protocol" when submitting your inquiry.
+                                    Mention &quot;Priority Protocol&quot; when submitting your inquiry.
                                 </p>
                             </div>
                         </Card>

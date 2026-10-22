@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -20,11 +20,12 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredPath, setHoveredPath] = useState(null);
+    const [highlight, setHighlight] = useState({ width: 100, offset: 0 });
     const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 20);
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -32,6 +33,34 @@ export default function Navbar() {
     useEffect(() => {
         setMobileMenuOpen(false);
     }, [pathname]);
+
+    // Close mobile menu with the Escape key
+    useEffect(() => {
+        if (!mobileMenuOpen) return;
+        const handleKeyDown = (e) => {
+            if (e.key === "Escape") setMobileMenuOpen(false);
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [mobileMenuOpen]);
+
+    // Measure the hovered/active link for the sliding highlight (DOM reads belong in effects, not render)
+    useLayoutEffect(() => {
+        const measure = () => {
+            const activeIndex = navLinks.findIndex(l => l.path === (hoveredPath || pathname));
+            const el = document.getElementById(`nav-link-${activeIndex}`);
+            let offset = 0;
+            for (let i = 0; i < activeIndex; i++) {
+                const link = document.getElementById(`nav-link-${i}`);
+                if (link) offset += link.offsetWidth;
+            }
+            setHighlight({ width: el ? el.offsetWidth : 100, offset });
+        };
+        measure();
+        window.addEventListener("resize", measure);
+        document.fonts?.ready.then(measure);
+        return () => window.removeEventListener("resize", measure);
+    }, [hoveredPath, pathname]);
 
     return (
         <>
@@ -57,26 +86,8 @@ export default function Navbar() {
                                 className="absolute top-1 bottom-1 bg-white/10 rounded-lg -z-10 transition-all duration-300 ease-[cubic-bezier(0.33,0.83,0.99,0.98)]"
                                 style={{
                                     opacity: (hoveredPath || navLinks.some(l => l.path === pathname)) ? 1 : 0,
-                                    width: (() => {
-                                        const path = hoveredPath || pathname;
-                                        const index = navLinks.findIndex(l => l.path === path);
-                                        const el = typeof document !== 'undefined' ? document.getElementById(`nav-link-${index}`) : null;
-                                        return el ? `${el.offsetWidth}px` : '100px';
-                                    })(),
-                                    transform: `translateX(${(() => {
-                                        const path = hoveredPath || pathname;
-                                        const activeIndex = navLinks.findIndex(l => l.path === path);
-                                        if (activeIndex === -1) return 0;
-                                        let offset = 0;
-                                        if (typeof document !== 'undefined') {
-                                            for (let i = 0; i < activeIndex; i++) {
-                                                const el = document.getElementById(`nav-link-${i}`);
-                                                if (el) offset += el.offsetWidth;
-                                            }
-                                        }
-                                        return offset;
-                                    })()
-                                        }px)`
+                                    width: `${highlight.width}px`,
+                                    transform: `translateX(${highlight.offset}px)`
                                 }}
                             />
 
@@ -104,7 +115,8 @@ export default function Navbar() {
                     <button
                         className="lg:hidden text-white p-2"
                         onClick={() => setMobileMenuOpen(true)}
-                        aria-label="Toggle mobile menu"
+                        aria-label="Open mobile menu"
+                        aria-expanded={mobileMenuOpen}
                     >
                         <Menu size={24} />
                     </button>
@@ -126,6 +138,7 @@ export default function Navbar() {
                                 <button
                                     onClick={() => setMobileMenuOpen(false)}
                                     className="text-white p-2"
+                                    aria-label="Close mobile menu"
                                 >
                                     <X size={24} />
                                 </button>

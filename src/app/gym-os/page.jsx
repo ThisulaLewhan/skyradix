@@ -97,17 +97,13 @@ export default function GymOSPage() {
 
                             <SectionTransition delay={0.2}>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-                                    <Link href="/">
-                                        <button className="min-w-[180px] inline-flex items-center justify-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 group">
-                                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                                            Back to Home
-                                        </button>
+                                    <Link href="/" className="min-w-[180px] inline-flex items-center justify-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 group">
+                                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                                        Back to Home
                                     </Link>
-                                    <Link href="/contact">
-                                        <button className="min-w-[180px] inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl px-6 py-3 text-sm transition-all duration-300 hover:shadow-lg hover:shadow-indigo-600/30 hover:-translate-y-0.5 group">
-                                            Request Access
-                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                        </button>
+                                    <Link href="/contact" className="min-w-[180px] inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl px-6 py-3 text-sm transition-all duration-300 hover:shadow-lg hover:shadow-indigo-600/30 hover:-translate-y-0.5 group">
+                                        Request Access
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </div>
                             </SectionTransition>
@@ -247,11 +243,9 @@ export default function GymOSPage() {
                                         <p className="text-white/40 text-sm leading-relaxed mb-8 max-w-xs mx-auto">
                                             Be among the first gyms to run on Gym OS. We&apos;re onboarding a limited number of early partners.
                                         </p>
-                                        <Link href="/contact">
-                                            <button className="w-full inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl px-6 py-3.5 text-sm transition-all duration-300 hover:shadow-lg hover:shadow-indigo-600/30 group">
-                                                Get in Touch
-                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                            </button>
+                                        <Link href="/contact" className="w-full inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl px-6 py-3.5 text-sm transition-all duration-300 hover:shadow-lg hover:shadow-indigo-600/30 group">
+                                            Get in Touch
+                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </div>
                                 </div>
@@ -275,17 +269,13 @@ export default function GymOSPage() {
                                 Gym OS is currently in early access. If you run a gym and want to be among the first to deploy it, get in touch with the Skyradix team.
                             </Body>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                <Link href="/contact">
-                                    <button className="min-w-[180px] inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl px-8 py-4 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-600/30 hover:-translate-y-0.5 group">
-                                        Contact Us
-                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </button>
+                                <Link href="/contact" className="min-w-[180px] inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl px-8 py-4 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-600/30 hover:-translate-y-0.5 group">
+                                    Contact Us
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </Link>
-                                <Link href="/">
-                                    <button className="min-w-[180px] inline-flex items-center justify-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-xl px-8 py-4 text-sm font-medium transition-all duration-300 group">
-                                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                                        Back to Home
-                                    </button>
+                                <Link href="/" className="min-w-[180px] inline-flex items-center justify-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white rounded-xl px-8 py-4 text-sm font-medium transition-all duration-300 group">
+                                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                                    Back to Home
                                 </Link>
                             </div>
                         </SectionTransition>

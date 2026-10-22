@@ -1,13 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+
+const MotionLink = motion.create(Link);
 
 export const Button = ({
     children,
     className,
     variant = "primary",
     size = "md",
+    href,
     ...props
 }) => {
     const baseStyles =
@@ -27,10 +31,21 @@ export const Button = ({
         lg: "px-8 py-4 text-lg",
     };
 
+    const classes = cn(baseStyles, variants[variant], sizes[size], className);
+
+    // With an href, render the link itself as the button (a <button> inside a link is invalid HTML)
+    if (href) {
+        return (
+            <MotionLink href={href} whileTap={{ scale: 0.97 }} className={classes} {...props}>
+                {children}
+            </MotionLink>
+        );
+    }
+
     return (
         <motion.button
             whileTap={{ scale: 0.97 }}
-            className={cn(baseStyles, variants[variant], sizes[size], className)}
+            className={classes}
             {...props}
         >
             {children}

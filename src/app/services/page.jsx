@@ -92,7 +92,7 @@ export default function ServicesPage() {
                 <SectionTransition className="text-center max-w-4xl mx-auto mb-20">
                     <H1>Our Services</H1>
                     <Body variant="large" className="text-muted-grey mt-6">
-                        We don't just build software. What makes us truly unique is how we apply marketing strategies and behavioral psychology directly to our products. Every website, mobile app, and system we deliver is engineered specifically to capture attention and increase user engagement.
+                        We don&apos;t just build software. What makes us truly unique is how we apply marketing strategies and behavioral psychology directly to our products. Every website, mobile app, and system we deliver is engineered specifically to capture attention and increase user engagement.
                     </Body>
                 </SectionTransition>
 
@@ -134,9 +134,7 @@ export default function ServicesPage() {
 
                 <SectionTransition delay={0.4} className="mt-24 text-center">
                     <H2 className="mb-6">Ready to build something better?</H2>
-                    <Link href="/contact">
-                        <Button size="md" className="w-[200px]">Let’s Talk</Button>
-                    </Link>
+                    <Button href="/contact" size="md" className="w-[200px]">Let’s Talk</Button>
                 </SectionTransition>
             </div>
         </PageTransition>

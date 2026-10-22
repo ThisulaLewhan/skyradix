@@ -4,10 +4,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { H1, Body } from "@/components/ui/Typography";
 import { SectionTransition } from "@/components/ui/PageTransition";
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { useState, useEffect } from "react";
 
 export const HeroSection = () => {
     // Removed complex Blob loading logic to drastically improve LCP.
@@ -99,17 +97,13 @@ export const HeroSection = () => {
                         </Body>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-                            <Link href="/contact">
-                                <Button size="lg" className="justify-center min-w-[200px] px-8 py-4 text-base font-bold rounded-xl bg-[#00F99A] text-black shadow-[0_0_35px_-5px_rgba(0,249,154,0.2)] hover:shadow-[0_0_50px_-5px_rgba(0,249,154,0.7)] hover:brightness-105 active:scale-95 transition-all flex items-center gap-2 group">
-                                    Start a Project
-                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                </Button>
-                            </Link>
-                            <Link href="/prototypes">
-                                <Button variant="ghost" size="lg" className="justify-center min-w-[200px] px-8 py-4 text-base font-medium rounded-xl border border-green-400/40 bg-black/70 backdrop-blur-md text-white hover:bg-black/90 hover:border-green-400/90 transition-all">
-                                    View Prototypes
-                                </Button>
-                            </Link>
+                            <Button href="/contact" size="lg" className="justify-center min-w-[200px] px-8 py-4 text-base font-bold rounded-xl bg-[#00F99A] text-black shadow-[0_0_35px_-5px_rgba(0,249,154,0.2)] hover:shadow-[0_0_50px_-5px_rgba(0,249,154,0.7)] hover:brightness-105 active:scale-95 transition-all flex items-center gap-2 group">
+                                Start a Project
+                                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                            <Button href="/prototypes" variant="ghost" size="lg" className="justify-center min-w-[200px] px-8 py-4 text-base font-medium rounded-xl border border-green-400/40 bg-black/70 backdrop-blur-md text-white hover:bg-black/90 hover:border-green-400/90 transition-all">
+                                View Prototypes
+                            </Button>
                         </div>
                     </motion.div>
                 </SectionTransition>

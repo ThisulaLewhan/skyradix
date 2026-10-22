@@ -7,9 +7,9 @@ export default function StructuredData() {
     "logo": "https://skyradix.com/logo.png",
     "description": "Skyradix delivers cutting-edge web, mobile, and software solutions, integrating marketing strategies for maximum impact.",
     "sameAs": [
-      "https://twitter.com/skyradix",
-      "https://www.linkedin.com/company/skyradix",
-      "https://www.facebook.com/skyradix"
+      "https://www.instagram.com/skyradix_",
+      "https://www.linkedin.com/company/skyradix/",
+      "https://www.facebook.com/share/187FdwH5w9/"
     ],
     "foundingDate": "2024",
     "founder": {
@@ -18,7 +18,7 @@ export default function StructuredData() {
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+94767607668",
+      "telephone": "+94702708220",
       "email": "skyradixsolutions@gmail.com",
       "contactType": "customer support",
       "areaServed": "Worldwide",

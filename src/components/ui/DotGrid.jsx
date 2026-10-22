@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 
 export default function DotGrid({
     gap = 24,
     size = 1.5,
     color = "rgba(5, 250, 140, 0.55)",
-    glowColor = "rgba(0, 229, 255, 0.8)", // Accent cyan
     mouseRadius = 150,
     distortionStrength = 3.5,
     returnSpeed = 0.08,
@@ -70,6 +69,11 @@ export default function DotGrid({
         if (!ctx || !canvas) return;
 
         let animationFrameId;
+        let isVisible = true;
+
+        // Split the rgba once to inject per-dot opacity
+        const colorParts = color.replace('rgba(', '').replace(')', '').split(',');
+        const baseAlpha = colorParts.length === 4 ? parseFloat(colorParts[3]) : null;
 
         const render = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -112,10 +116,8 @@ export default function DotGrid({
                 ctx.beginPath();
                 ctx.arc(dot.x, dot.y, size, 0, Math.PI * 2);
 
-                // Split the rgba to inject opacity
-                const colorParts = color.replace('rgba(', '').replace(')', '').split(',');
-                if (colorParts.length === 4) {
-                    ctx.fillStyle = `rgba(${colorParts[0]}, ${colorParts[1]}, ${colorParts[2]}, ${parseFloat(colorParts[3]) * dot.baseOpacity})`;
+                if (baseAlpha !== null) {
+                    ctx.fillStyle = `rgba(${colorParts[0]}, ${colorParts[1]}, ${colorParts[2]}, ${baseAlpha * dot.baseOpacity})`;
                 } else {
                     ctx.fillStyle = color;
                 }
@@ -125,12 +127,22 @@ export default function DotGrid({
                 ctx.fill();
             }
 
-            animationFrameId = requestAnimationFrame(render);
+            animationFrameId = isVisible ? requestAnimationFrame(render) : null;
         };
 
+        // Pause the animation loop while the canvas is off-screen
+        const observer = new IntersectionObserver(([entry]) => {
+            isVisible = entry.isIntersecting;
+            if (isVisible && animationFrameId === null) render();
+        });
+        observer.observe(canvas);
+
         render();
-        return () => cancelAnimationFrame(animationFrameId);
-    }, [color, glowColor, size, mouseRadius, distortionStrength, returnSpeed, friction]);
+        return () => {
+            observer.disconnect();
+            if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+        };
+    }, [color, size, mouseRadius, distortionStrength, returnSpeed, friction]);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -153,7 +165,9 @@ export default function DotGrid({
             }
         };
 
-        const handleMouseLeave = () => {
+        const handleMouseLeave = (e) => {
+            // `mouseout` bubbles from every element; only reset when the pointer leaves the window
+            if (e.relatedTarget) return;
             mouseRef.current.isHovering = false;
             mouseRef.current.x = -1000;
             mouseRef.current.y = -1000;

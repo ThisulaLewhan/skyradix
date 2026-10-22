@@ -7,6 +7,13 @@ import { MonitorSmartphone, TrendingUp, Layers, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+// Unique glowing colors per service card, by index
+const cardColors = [
+    "border-blue-500/50 shadow-[0_0_40px_rgba(59,130,246,0.3)] hover:border-blue-400 hover:shadow-[0_0_60px_rgba(59,130,246,0.4)] hover:-translate-y-2", // Blue
+    "border-orange-500/50 shadow-[0_0_40px_rgba(249,115,22,0.3)] hover:border-orange-400 hover:shadow-[0_0_60px_rgba(249,115,22,0.4)] hover:-translate-y-2", // Orange
+    "border-emerald-500/50 shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:border-emerald-400 hover:shadow-[0_0_60px_rgba(16,185,129,0.4)] hover:-translate-y-2" // Emerald
+];
+
 export const WhatWeBuildSection = () => {
     const services = [
         {
@@ -117,16 +124,10 @@ export const WhatWeBuildSection = () => {
                     {/* Service Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full relative z-10">
                         {services.map((service, index) => {
-                            // Assign unique glowing colors per card based on index
-                            const colors = [
-                                "border-blue-500/50 shadow-[0_0_40px_rgba(59,130,246,0.3)] hover:border-blue-400 hover:shadow-[0_0_60px_rgba(59,130,246,0.4)] hover:-translate-y-2", // Blue
-                                "border-orange-500/50 shadow-[0_0_40px_rgba(249,115,22,0.3)] hover:border-orange-400 hover:shadow-[0_0_60px_rgba(249,115,22,0.4)] hover:-translate-y-2", // Orange
-                                "border-emerald-500/50 shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:border-emerald-400 hover:shadow-[0_0_60px_rgba(16,185,129,0.4)] hover:-translate-y-2" // Emerald
-                            ];
 
                             return (
                                 <SectionTransition key={index} delay={0.6 + (index * 0.1)}>
-                                    <Card className={`h-full bg-[#0A0A0A] border-white/5 flex flex-col items-start px-8 py-10 transition-all duration-500 ease-out cursor-default ${colors[index]}`}>
+                                    <Card className={`h-full bg-[#0A0A0A] border-white/5 flex flex-col items-start px-8 py-10 transition-all duration-500 ease-out cursor-default ${cardColors[index]}`}>
                                         <div className="w-14 h-14 flex items-center justify-center bg-white/5 rounded-xl border border-white/10 mb-6 flex-shrink-0">
                                             {service.icon}
                                         </div>

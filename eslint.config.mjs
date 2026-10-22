@@ -9,6 +9,11 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [...compat.extends("next/core-web-vitals")];
+const eslintConfig = [
+  // ESLint 9 only lints .js/.mjs/.cjs by default, so include .jsx explicitly
+  { files: ["**/*.{js,jsx,mjs}"] },
+  { ignores: [".next/**", "node_modules/**"] },
+  ...compat.extends("next/core-web-vitals"),
+];
 
 export default eslintConfig;
